@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  studentratingfrontend:
+    image: hennihaus/studentrating-frontend:v0.1.1
+    ports:
+      - 4202:80
+  studentratingbackend:
+    image: hennihaus/studentrating-backend:v0.1.1
+    ports:
+      - 4203:4203
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prd"
+    depends_on:
+      - studentratingdb
+  studentratingdb:
+    image: mongo:4.4.3
